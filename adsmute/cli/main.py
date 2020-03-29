@@ -33,3 +33,23 @@ def download(source, destination):
                         x['url'], str(x['error'])
                     )
                 )
+
+
+@cli.command()
+@click.argument('source', type=click.File(mode='r'),
+                callback=val.load_source)
+@click.argument('base_path',
+                type=click.Path(exists=True, dir_okay=True, readable=True))
+@click.argument('destination', type=click.File(mode='w'))
+def servers(source, base_path, destination):
+    source = {x['name']: x for x in source}
+    process = utils.process()
+    servers = []
+    filenames = os.listdir(base_path)
+    with click.progressbar(filenames, length=len(filenames)) as bar:
+        for name in bar:
+            if name in source:
+                full_name = os.path.join(base_path, name)
+                download = utils.load_file(full_name)
+                servers.extend(process(source[name]['format'], download))
+    destination.write('\n'.join(set(servers)))

@@ -3,6 +3,7 @@
 
 import json
 import requests
+import importlib
 
 
 def load_source(filename):
@@ -25,3 +26,27 @@ def download(x):
     except requests.exceptions.ConnectionError as e:
         x['error'] = e
     return x
+
+
+def load_file(name):
+    content = []
+    with open(name, 'r') as f:
+        for line in f:
+            content.append(line)
+    return content
+
+
+def process():
+    """Chose best processing function depending on text format."""
+    modules = {}
+
+    def _get_modules(format_name):
+        if format_name not in modules:
+            module = 'adsmute.format.{}'.format(format_name)
+            module = importlib.import_module(module)
+            modules[format_name] = module
+        return modules[format_name]
+
+    def f(format_name, download):
+        return list(_get_modules(format_name).load(download))
+    return f
