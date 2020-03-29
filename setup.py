@@ -59,8 +59,8 @@ setup(
     ],
     #  extras_require={  # Optional
     #  },
-    #  entry_points='''
-    #      [console_scripts]
-    #      adsmute-cli=adsmute.cli.main:cli
-    #  ''',
+    entry_points='''
+        [console_scripts]
+        adsmute-cli=adsmute.cli.main:cli
+    ''',
 )
