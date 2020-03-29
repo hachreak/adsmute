@@ -55,6 +55,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'requests>=2.23.0',
+        'click>=7.1',
     ],
     #  extras_require={  # Optional
     #  },
