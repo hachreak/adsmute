@@ -54,6 +54,7 @@ setup(
     keywords='adsmute',
     packages=find_packages(),
     install_requires=[
+        'requests>=2.23.0',
     ],
     #  extras_require={  # Optional
     #  },
