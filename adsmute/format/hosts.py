@@ -4,6 +4,8 @@
 
 def load(content):
     for line in content:
+        # remove after comment char
+        line = line.split('#')[0]
         # strip spaces
         line = line.strip()
         # remove multiple spaces
