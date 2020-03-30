@@ -36,6 +36,11 @@ def load_file(name):
     return content
 
 
+def count_lines(filename):
+    """Count file lines."""
+    return sum(1 for i in open(filename, 'rb'))
+
+
 def process():
     """Chose best processing function depending on text format."""
     modules = {}
