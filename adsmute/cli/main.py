@@ -50,7 +50,7 @@ def servers(source, base_path, destination):
     filenames = os.listdir(base_path)
     with click.progressbar(filenames, length=len(filenames)) as bar:
         for name in bar:
-            if name in source:
+            if name in source.keys():
                 full_name = os.path.join(base_path, name)
                 download = utils.load_file(full_name)
                 servers.extend(process(source[name]['format'], download))
