@@ -46,8 +46,5 @@
   {"name": "spam404.com",                        "enabled": true,  "format": "hosts",   "url": "https://raw.githubusercontent.com/Dawsey21/Lists/master/main-blacklist.txt"},
   {"name": "stevenblack",                        "enabled": true,  "format": "hosts",   "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/StevenBlack/hosts"},
   {"name": "stopforumspam.com",                  "enabled": true,  "format": "hosts",   "url": "https://stopforumspam.com/downloads/toxic_domains_whole.txt"},
-  {"name": "winhelp2002.mvps.org",               "enabled": true,  "format": "hosts",   "url": "http://winhelp2002.mvps.org/hosts.txt"},
-  {"name": "zerodot1-coinblockerlists",          "enabled": true,  "format": "hosts",   "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts"},
-  {"name": "zerodot1-coinblockerlists-browser",  "enabled": true,  "format": "hosts",   "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser"},
-  {"name": "zerodot1-coinblockerlists-optional", "enabled": true,  "format": "hosts",   "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_optional"}
+  {"name": "winhelp2002.mvps.org",               "enabled": true,  "format": "hosts",   "url": "http://winhelp2002.mvps.org/hosts.txt"}
 ]}
