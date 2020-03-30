@@ -31,7 +31,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 setup(
     name='adsmute',
     version='0.1.0',
-    description='Social Scraping!',
+    description='Mute any advertising server easily!',
     url='https://github.com/hachreak/adsmute',
     author='Leonardo Rossi',
     author_email='leonardo.rossi@studenti.unipr.it',

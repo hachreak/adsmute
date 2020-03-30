@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+#
+# This file is part of adsmute.
+# Copyright 2020 Leonardo Rossi <leonardo.rossi@studenti.unipr.it>.
 
 """Load servers from hosts format."""
 
