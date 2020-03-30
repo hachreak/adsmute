@@ -5,6 +5,7 @@
 
 """CLI main."""
 
+import re
 import click
 import os
 import logging
@@ -48,17 +49,25 @@ def download(source, destination):
 @click.argument('destination', type=click.File(mode='w'))
 def servers(source, base_path, destination):
     """Extract server names from blacklist files."""
+    servers = []
     source = {x['name']: x for x in source}
     process = utils.process()
-    servers = []
+    check = re.compile(r'^{}$'.format(utils.HOSTNAME_REGEX))
+    # for each blacklist file
     filenames = os.listdir(base_path)
     with click.progressbar(filenames, length=len(filenames)) as bar:
         for name in bar:
+            # only if contained in config file
             if name in source.keys():
+                # load file
                 full_name = os.path.join(base_path, name)
                 download = utils.load_file(full_name)
+                # append processed list
                 servers.extend(process(source[name]['format'], download))
-    destination.write('\n'.join(set(servers)))
+    # filter out not valid hostnames
+    servers = filter(check.match, set(servers))
+    # save results
+    destination.write('\n'.join(servers))
 
 
 @cli.command()
@@ -75,5 +84,9 @@ def dnsmasq(source, destination):
     count = utils.count_lines(source.name)
     with click.progressbar(source, length=count) as bar:
         for server in bar:
-            rules.append('address=/{}/127.0.0.1'.format(server.strip()))
+            try:
+                rules.append('address=/{}/127.0.0.1'.format(server.strip()))
+            except UnicodeEncodeError as e:
+                import ipdb; ipdb.set_trace()
+                print(e)
     destination.write('\n'.join(rules))

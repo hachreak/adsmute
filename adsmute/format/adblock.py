@@ -22,6 +22,8 @@ See: https://adblockplus.org/filter-cheatsheet
 
 import re
 
+from ..utils import HOSTNAME_REGEX
+
 
 def load(content):
     extract = _extract_name()
@@ -50,8 +52,7 @@ def load(content):
 
 
 def _extract_name():
-    pattern = r'^([0-9a-z][-\w]*[0-9a-z]\.)+[a-z0-9\-]{2,15}'
-    search = re.compile(pattern)
+    search = re.compile(r'^{}'.format(HOSTNAME_REGEX))
 
     def f(line):
         res = search.match(line)

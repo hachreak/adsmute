@@ -10,6 +10,9 @@ import requests
 import importlib
 
 
+HOSTNAME_REGEX = '([0-9a-z][-\w]*[0-9a-z]\.)+[a-z0-9\-]{2,15}'
+
+
 def load_source(filename):
     source = json.load(filename)
     return filter(lambda x: x.get('enabled', False), source['sources'])
