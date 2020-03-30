@@ -10,6 +10,9 @@ This rule blocks http://ads.example.com/foo.gif only if the conditions are met.
 Exception rules are built the same as blocking rules, they define which
 addresses should be allowed even if matching blocking rules exists.
 
+*Note*: be carefull because it can include many host that you want to block
+only partially.
+
 See: https://adblockplus.org/filter-cheatsheet
 """
 
@@ -43,10 +46,11 @@ def load(content):
 
 
 def _extract_name():
-    pattern = '^[0-9a-zA-Z]+[\.0-9a-zA-Z]+'
+    pattern = r'^([0-9a-z][-\w]*[0-9a-z]\.)+[a-z0-9\-]{2,15}'
+    search = re.compile(pattern)
 
     def f(line):
-        res = re.match(pattern, line)
+        res = search.match(line)
         if res:
             return line[res.start():res.end()]
     return f
