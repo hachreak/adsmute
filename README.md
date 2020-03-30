@@ -30,6 +30,7 @@ sudo systemctl restart dnsmasq
 To install into dnsmasq, please remember that (at least in debian) could go
 in conflict with network manager dnsmasq plugin and set manually the dns
 `127.0.0.1`.
+
 It's recommended to disable network manager plugin and restart both,
 because network manager is not able to manage correctly dnsmasq.
 
