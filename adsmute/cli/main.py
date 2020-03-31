@@ -32,7 +32,7 @@ def download(source, destination):
             name = os.path.join(destination, x['name'])
             if 'download' in x:
                 with open(name, 'w') as f:
-                    f.write('\n'.join(x['download']))
+                    f.write('\n'.join(x['download']).encode('utf8'))
             if 'error' in x:
                 logging.warning(
                     'Url {} return error!\nSee\n{}'.format(
@@ -84,9 +84,5 @@ def dnsmasq(source, destination):
     count = utils.count_lines(source.name)
     with click.progressbar(source, length=count) as bar:
         for server in bar:
-            try:
-                rules.append('address=/{}/127.0.0.1'.format(server.strip()))
-            except UnicodeEncodeError as e:
-                import ipdb; ipdb.set_trace()
-                print(e)
+            rules.append('address=/{}/127.0.0.1'.format(server.strip()))
     destination.write('\n'.join(rules))
