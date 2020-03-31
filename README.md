@@ -36,3 +36,5 @@ because network manager is not able to manage correctly dnsmasq.
 
 ### Acknowledgment
 See original [source file](https://github.com/hectorm/hmirror/).
+And `notracking` blacklist
+[repository](https://github.com/notracking/hosts-blocklists).
