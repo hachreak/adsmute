@@ -37,9 +37,10 @@ def download(x):
 
 def load_file(name):
     content = []
-    with open(name, 'r') as f:
-        for line in f:
-            content.append(line)
+    if name:
+        with open(name, 'r') as f:
+            for line in f:
+                content.append(line)
     return content
 
 

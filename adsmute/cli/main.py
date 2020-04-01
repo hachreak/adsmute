@@ -47,7 +47,8 @@ def download(source, destination):
 @click.argument('base_path',
                 type=click.Path(exists=True, dir_okay=True, readable=True))
 @click.argument('destination', type=click.File(mode='w'))
-def servers(source, base_path, destination):
+@click.option('-w', '--whitelist', callback=val.load_file)
+def servers(source, base_path, destination, whitelist):
     """Extract server names from blacklist files."""
     servers = []
     source = {x['name']: x for x in source}
@@ -66,6 +67,8 @@ def servers(source, base_path, destination):
                 servers.extend(process(source[name]['format'], download))
     # filter out not valid hostnames
     servers = filter(check.match, set(servers))
+    # filter whitelist
+    servers = set(servers) - set(whitelist)
     # save results
     destination.write('\n'.join(servers))
 

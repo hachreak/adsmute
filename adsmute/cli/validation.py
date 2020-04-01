@@ -5,8 +5,12 @@
 
 """Validations."""
 
-from ..utils import load_source as ls
+from ..utils import load_source as ls, load_file as lf
 
 
 def load_source(ictx, param, value):
     return ls(value)
+
+
+def load_file(ictx, param, value):
+    return lf(value)
