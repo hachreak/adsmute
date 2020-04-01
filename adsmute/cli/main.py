@@ -31,7 +31,7 @@ def download(source, destination):
         for x in utils.stream(utils.download, bar):
             name = os.path.join(destination, x['name'])
             if 'download' in x:
-                with open(name, 'w') as f:
+                with open(name, 'wb') as f:
                     f.write('\n'.join(x['download']).encode('utf8'))
             if 'error' in x:
                 logging.warning(
